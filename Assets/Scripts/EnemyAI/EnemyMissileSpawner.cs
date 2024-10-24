@@ -6,13 +6,12 @@ namespace EnemyAI
     public class EnemyMissileSpawner : Spawner<Missil>
     {
         [SerializeField] private float _shotRepeat = 2f;
-        [SerializeField] private float _startPosition = 1.75f;
 
         private Coroutine _coroutine;
 
         private void OnEnable()
         {
-            _coroutine = StartCoroutine(Countdown(_shotRepeat));
+            _coroutine = StartCoroutine(Spawning(_shotRepeat));
         }
 
         private void OnDisable()
@@ -21,7 +20,15 @@ namespace EnemyAI
                 StopCoroutine(_coroutine);
         }
 
-        private IEnumerator Countdown(float delay)
+        protected override void Spawn()
+        {
+            var missil = GetObject();
+            missil.transform.position = GetPosition();
+            missil.Init();
+            missil.Detonation += RemoveObject;
+        }
+
+        private IEnumerator Spawning(float delay)
         {
             var wait = new WaitForSeconds(delay);
 
@@ -33,18 +40,11 @@ namespace EnemyAI
             }
         }
 
-        protected override void Spawn()
+        private void RemoveObject(Missil missil)
         {
-            var missil = GetObject();
-            missil.transform.position = GetPosition();
-            missil.Init(RemoveToPool);
-        }
+            missil.Detonation -= RemoveObject;
 
-        protected override Vector3 GetPosition()
-        {
-            Vector3 position = transform.position;
-            position.x -= _startPosition;
-            return position;
+            RemoveToPool(missil);
         }
     }
 }

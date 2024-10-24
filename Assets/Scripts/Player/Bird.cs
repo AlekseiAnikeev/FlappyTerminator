@@ -5,16 +5,11 @@ using UnityEngine;
 
 namespace Player
 {
-    [RequireComponent(
-            typeof(BirdMover),
-            typeof(BirdCollisionHandler)
-        )
-    ]
+    [RequireComponent(typeof(BirdMover), typeof(BirdCollisionHandler))]
     public class Bird : MonoBehaviour
     {
         private BirdMover _birdMover;
         private BirdCollisionHandler _handler;
-        private Cannon _cannon;
 
         public event Action GameOver;
 
@@ -22,7 +17,6 @@ namespace Player
         {
             _handler = GetComponent<BirdCollisionHandler>();
             _birdMover = GetComponent<BirdMover>();
-            _cannon = GetComponentInChildren<Cannon>();
         }
 
         private void OnEnable()
@@ -33,14 +27,6 @@ namespace Player
         private void OnDisable()
         {
             _handler.CollisionDetected -= ProcessCollision;
-        }
-
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-                _cannon.Shoot();
-            }
         }
 
         private void ProcessCollision(IInteractable interactable)

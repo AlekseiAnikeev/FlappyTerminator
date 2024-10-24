@@ -1,12 +1,8 @@
-using UnityEngine;
-
 namespace Player
 {
     public class PlayerMissileSpawner : Spawner<Missil>
     {
-        [SerializeField] private float _startPosition;
-        
-        public void Shoot()
+        public void CreateMissil()
         {
             Spawn();
         }
@@ -15,14 +11,15 @@ namespace Player
         {
             var missil = GetObject();
             missil.transform.position = GetPosition();
-            missil.Init(RemoveToPool);
+            missil.Init();
+            missil.Detonation += RemoveObject;
         }
 
-        protected override Vector3 GetPosition()
+        private void RemoveObject(Missil missil)
         {
-            Vector3 position = transform.position;
-            position.x -= _startPosition;
-            return position;
+            missil.Detonation -= RemoveObject;
+            
+            RemoveToPool(missil);
         }
     }
 }

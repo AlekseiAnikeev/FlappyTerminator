@@ -16,7 +16,7 @@ namespace EnemyAI
 
         private void Start()
         {
-            _coroutine = StartCoroutine(Countdown(_repeatRate));
+            _coroutine = StartCoroutine(Spawning(_repeatRate));
         }
 
         private void OnDisable()
@@ -38,11 +38,18 @@ namespace EnemyAI
             {
                 var enemy = GetObject();
                 enemy.transform.position = GetPosition();
-                enemy.Init(RemoveToPool);
+                enemy.Detonation += RemoveObject;
             }
         }
 
-        private IEnumerator Countdown(float delay)
+        private void RemoveObject(Enemy enemy)
+        {
+            enemy.Detonation -= RemoveObject;
+            
+            RemoveToPool(enemy);
+        }
+
+        private IEnumerator Spawning(float delay)
         {
             var wait = new WaitForSeconds(delay);
 

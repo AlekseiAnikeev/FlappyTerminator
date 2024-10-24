@@ -355,9 +355,6 @@ MonoBehaviour:
   _bird: {fileID: 1059665226}
   _startScreen: {fileID: 1168044572}
   _endGameScreen: {fileID: 1731073917}
-  _enemyMissileSpawner: {fileID: 1512780582110880963, guid: 68e369c17342e944cbe2e312b4a96636, type: 3}
-  _playerMissileSpawner: {fileID: 2042011046}
-  _enemySpawner: {fileID: 1814014513}
 --- !u!1 &540520790
 GameObject:
   m_ObjectHideFlags: 0
@@ -819,6 +816,7 @@ MonoBehaviour:
   _rotationSpeed: 1
   _maxRotationZ: 35
   _minRotationZ: -60
+  _inputReader: {fileID: 1919564966}
 --- !u!1 &1168044570
 GameObject:
   m_ObjectHideFlags: 0
@@ -1689,8 +1687,53 @@ MonoBehaviour:
   _prefab: {fileID: 6146391451133883948, guid: 68e369c17342e944cbe2e312b4a96636, type: 3}
   _poolCapacity: 5
   _poolMaxSize: 5
+  _xOffset: 0
   _spawnAmount: 1
   _repeatRate: 5
+--- !u!1 &1919564965
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1919564967}
+  - component: {fileID: 1919564966}
+  m_Layer: 0
+  m_Name: InputReader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1919564966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1919564965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a633912f79b54346b5ec05093cdcab2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1919564967
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1919564965}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.3410664, y: 1.5636245, z: -0.11998424}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2042011043
 GameObject:
   m_ObjectHideFlags: 0
@@ -1737,6 +1780,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _missileSpawner: {fileID: 2042011046}
+  _inputReader: {fileID: 1919564966}
 --- !u!114 &2042011046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1752,7 +1796,7 @@ MonoBehaviour:
   _prefab: {fileID: 6533237817389905566, guid: c59ad68c67525f34584809d37fde154b, type: 3}
   _poolCapacity: 5
   _poolMaxSize: 5
-  _startPosition: -0.13
+  _xOffset: -0.25
 --- !u!1 &2107657709
 GameObject:
   m_ObjectHideFlags: 0
@@ -1851,3 +1895,4 @@ SceneRoots:
   - {fileID: 1059665221}
   - {fileID: 1770115001}
   - {fileID: 1627571017}
+  - {fileID: 1919564967}

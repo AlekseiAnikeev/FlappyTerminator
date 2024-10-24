@@ -1,4 +1,3 @@
-using Unity.VisualScripting.ReorderableList;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -7,6 +6,7 @@ public abstract class Spawner<T> : MonoBehaviour where T : MonoBehaviour
     [SerializeField] private T _prefab;
     [SerializeField] private int _poolCapacity = 5;
     [SerializeField] private int _poolMaxSize = 5;
+    [SerializeField] private float _xOffset = 0;
 
     private ObjectPool<T> _pool;
 
@@ -23,7 +23,6 @@ public abstract class Spawner<T> : MonoBehaviour where T : MonoBehaviour
         );
     }
 
-    protected abstract Vector3 GetPosition();
     protected abstract void Spawn();
     
     protected T GetObject()
@@ -34,6 +33,13 @@ public abstract class Spawner<T> : MonoBehaviour where T : MonoBehaviour
     protected void RemoveToPool(T obj)
     {
         _pool.Release(obj);
+    }
+    
+    protected virtual Vector3 GetPosition()
+    {
+        Vector3 position = transform.position;
+        position.x -= _xOffset;
+        return position;
     }
 
     private T Create()

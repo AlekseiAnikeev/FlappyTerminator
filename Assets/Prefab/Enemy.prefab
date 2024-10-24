@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 898081723633680889}
   - component: {fileID: 1988545842411669852}
   - component: {fileID: 6146391451133883948}
-  - component: {fileID: 1512780582110880963}
   - component: {fileID: 7623640708902401369}
   - component: {fileID: 747029574162274369}
   m_Layer: 0
@@ -101,23 +100,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67d138d28b0035f4c9aa80016d62d5ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1512780582110880963
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3908317222256257310}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2e985536725e874a893a637dd630def, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _prefab: {fileID: 6627113566632290054, guid: 6dda6498d4dc57049a388631c3b30bcc, type: 3}
-  _poolCapacity: 5
-  _poolMaxSize: 5
-  _shotRepeat: 2
-  _startPosition: 1.75
 --- !u!61 &7623640708902401369
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -237,5 +219,5 @@ MonoBehaviour:
   _prefab: {fileID: 6627113566632290054, guid: 6dda6498d4dc57049a388631c3b30bcc, type: 3}
   _poolCapacity: 5
   _poolMaxSize: 5
+  _xOffset: 1.75
   _shotRepeat: 2
-  _startPosition: 1.75

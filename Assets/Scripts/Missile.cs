@@ -15,41 +15,36 @@ public class Missil : MonoBehaviour, IInteractable
 
     public event Action<Missil> Detonation;
 
-    private void OnDestroy()
+    private void OnEnable()
+    {
+        _coroutine = StartCoroutine(Countdown(_lifeTime));
+    }
+
+    private void OnDisable()
     {
         if (_coroutine != null)
             StopCoroutine(_coroutine);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         transform.Translate(_direction * (_speed * Time.deltaTime));
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        /*if (collision.TryGetComponent(out Enemy _))
-            Destroy(collision.gameObject);*/
-        
-        Destroy(gameObject);
+        Detonation?.Invoke(this);
     }
-
+    
+    public void Init()
+    {
+        _coroutine = StartCoroutine(Countdown(_lifeTime));
+    }
+    
     private IEnumerator Countdown(float delay)
     {
         yield return new WaitForSeconds(delay);
 
-        RemoveToPool();
-    }
-
-    public void Init(Action<Missil> detonation)
-    {
-        Detonation = detonation;
-
-        _coroutine = StartCoroutine(Countdown(_lifeTime));
-    }
-
-    private void RemoveToPool()
-    {
         Detonation?.Invoke(this);
     }
 }

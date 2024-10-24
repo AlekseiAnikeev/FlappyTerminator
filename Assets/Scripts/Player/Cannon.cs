@@ -5,9 +5,21 @@ namespace Player
     public class Cannon : MonoBehaviour
     {
         [SerializeField] private PlayerMissileSpawner _missileSpawner;
-        public void Shoot()
+        [SerializeField] private InputReader _inputReader;
+
+        private void OnEnable()
         {
-            _missileSpawner.Shoot();
+            _inputReader.Shot += Shoot;
+        }
+
+        private void OnDisable()
+        {
+            _inputReader.Shot -= Shoot;
+        }
+
+        private void Shoot()
+        {
+            _missileSpawner.CreateMissil();
         }
     }
 }

@@ -1,4 +1,3 @@
-using EnemyAI;
 using Player;
 using UI;
 using UnityEngine;
@@ -8,9 +7,6 @@ public class Game : MonoBehaviour
     [SerializeField] private Bird _bird;
     [SerializeField] private StartScreen _startScreen;
     [SerializeField] private EndGameScreen _endGameScreen;
-    [SerializeField] private EnemyMissileSpawner _enemyMissileSpawner;
-    [SerializeField] private PlayerMissileSpawner _playerMissileSpawner;
-    [SerializeField] private EnemySpawner _enemySpawner;
 
     private void OnEnable()
     {
