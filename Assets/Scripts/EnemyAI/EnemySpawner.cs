@@ -36,7 +36,7 @@ namespace EnemyAI
         {
             for (int i = 0; i < _spawnAmount; i++)
             {
-                var enemy = GetObject();
+                Enemy enemy = GetObject();
                 enemy.transform.position = GetPosition();
                 enemy.Detonation += RemoveObject;
             }

@@ -8,6 +8,13 @@ public class Game : MonoBehaviour
     [SerializeField] private StartScreen _startScreen;
     [SerializeField] private EndGameScreen _endGameScreen;
 
+    private void Awake()
+    {
+        Time.timeScale = 0;
+        _startScreen.Open();
+        _endGameScreen.Close();
+    }
+
     private void OnEnable()
     {
         _startScreen.PlayButtonClicked += OnPlayButtonClick;
@@ -20,13 +27,6 @@ public class Game : MonoBehaviour
         _startScreen.PlayButtonClicked -= OnPlayButtonClick;
         _endGameScreen.RestartButtonClicked -= OnRestartButtonClick;
         _bird.GameOver -= OnGameOver;
-    }
-
-    private void Awake()
-    {
-        Time.timeScale = 0;
-        _startScreen.Open();
-        _endGameScreen.Close();
     }
 
     private void OnGameOver()

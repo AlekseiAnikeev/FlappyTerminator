@@ -3,10 +3,11 @@ using UnityEngine;
 
 namespace EnemyAI
 {
-    public class EnemyMissileSpawner : Spawner<Missil>
+    public class EnemyWeapon : MonoBehaviour
     {
+        [SerializeField] private MissileSpawner _missileSpawner;
         [SerializeField] private float _shotRepeat = 2f;
-
+    
         private Coroutine _coroutine;
 
         private void OnEnable()
@@ -19,32 +20,23 @@ namespace EnemyAI
             if (_coroutine != null)
                 StopCoroutine(_coroutine);
         }
-
-        protected override void Spawn()
+    
+        private void Shoot()
         {
-            var missil = GetObject();
-            missil.transform.position = GetPosition();
-            missil.Init();
-            missil.Detonation += RemoveObject;
+            _missileSpawner.CreateMissil();
         }
-
+    
         private IEnumerator Spawning(float delay)
         {
             var wait = new WaitForSeconds(delay);
 
             while (enabled)
             {
-                Spawn();
+                Shoot();
+                
 
                 yield return wait;
             }
-        }
-
-        private void RemoveObject(Missil missil)
-        {
-            missil.Detonation -= RemoveObject;
-
-            RemoveToPool(missil);
         }
     }
 }

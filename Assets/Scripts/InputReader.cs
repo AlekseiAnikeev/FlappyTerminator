@@ -4,6 +4,7 @@ using UnityEngine;
 public class InputReader : MonoBehaviour
 {
     private const string CommandJump = "Jump";
+    private const KeyCode CommandShoot = KeyCode.F;
     
     private bool _isJump;
     
@@ -14,7 +15,7 @@ public class InputReader : MonoBehaviour
         if (Input.GetButtonDown(CommandJump))
             _isJump = true;
         
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(CommandShoot))
             Shoot();
     }
 

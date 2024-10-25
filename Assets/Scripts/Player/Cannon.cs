@@ -4,7 +4,7 @@ namespace Player
 {
     public class Cannon : MonoBehaviour
     {
-        [SerializeField] private PlayerMissileSpawner _missileSpawner;
+        [SerializeField] private MissileSpawner _missileSpawner;
         [SerializeField] private InputReader _inputReader;
 
         private void OnEnable()
